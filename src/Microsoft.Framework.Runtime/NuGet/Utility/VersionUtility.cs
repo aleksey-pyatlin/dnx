@@ -152,6 +152,7 @@ namespace NuGet
         /// something a framework name that the package manager understands.
         /// </summary>
         public static FrameworkName ParseFrameworkName(string frameworkName)
+
         {
             if (frameworkName == null)
             {
@@ -175,7 +176,6 @@ namespace NuGet
             if (parts.Length > 2)
             {
                 throw new ArgumentException(NuGetResources.InvalidFrameworkNameFormat, "frameworkName");
-
             }
 
             string frameworkNameAndVersion = parts.Length > 0 ? parts[0].Trim() : null;
@@ -1115,6 +1115,10 @@ namespace NuGet
 
         public static bool IsPortableFramework(this FrameworkName framework)
         {
+            // .NETPortable 5.0+ is dramatically different from previous versions of .NETPortable,
+            // so we return false here if the framework is .NETPortable 5.0+ since the new versions
+            // of portable behave more like normal frameworks than portable profiles.
+
             // The profile part has been verified in the ParseFrameworkName() method.
             // By the time it is called here, it's guaranteed to be valid.
             // Thus we can ignore the profile part here
