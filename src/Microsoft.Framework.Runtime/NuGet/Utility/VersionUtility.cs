@@ -175,6 +175,7 @@ namespace NuGet
             if (parts.Length > 2)
             {
                 throw new ArgumentException(NuGetResources.InvalidFrameworkNameFormat, "frameworkName");
+
             }
 
             string frameworkNameAndVersion = parts.Length > 0 ? parts[0].Trim() : null;
@@ -828,7 +829,6 @@ namespace NuGet
                 Tuple<Version, FrameworkName> entry;
                 if (_equivalentProjectFrameworks.TryGetValue(frameworkName.Identifier, out entry) && frameworkName.Version >= entry.Item1)
                 {
-                    // Goto might be evil but it's so nice to use here
                     frameworkName = entry.Item2;
                 }
                 else

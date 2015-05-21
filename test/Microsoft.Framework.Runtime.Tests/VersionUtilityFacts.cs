@@ -85,12 +85,14 @@ namespace Microsoft.Framework.Runtime.Tests
         }
 
         [Theory]
-        [InlineData(".NETPortable", "5.0", "core50")]
-        [InlineData(".NETPortable", "5.1", "core51")]
-        [InlineData(".NETPortable", "6.0", "core60")]
-        public void ShortFrameworkNamesAreCorrect(string longName, string version, string shortName)
+        [InlineData(".NETPortable", "0.0", "net45+win8", "portable-net45+win80")]
+        [InlineData(".NETPortable", "4.2", "net45", "portable-net45")] // Portable version numbers < 5.0 didn't matter
+        [InlineData(".NETPortable", "5.0", null, "core50")]
+        [InlineData(".NETPortable", "5.1", null, "core51")]
+        [InlineData(".NETPortable", "6.0", null, "core60")]
+        public void ShortFrameworkNamesAreCorrect(string longName, string version, string profile, string shortName)
         {
-            var fx = new FrameworkName(longName, Version.Parse(version));
+            var fx = new FrameworkName(longName, Version.Parse(version), profile);
             Assert.Equal(shortName, VersionUtility.GetShortFrameworkName(fx));
         }
     }
