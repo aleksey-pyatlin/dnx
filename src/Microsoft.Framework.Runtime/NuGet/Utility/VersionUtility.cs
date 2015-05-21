@@ -22,10 +22,10 @@ namespace NuGet
     {
         public static readonly string AspNetCoreFrameworkIdentifier = "Asp.NetCore";
         public static readonly string DnxCoreFrameworkIdentifier = "DNXCore";
+        public static readonly string PortableFrameworkIdentifier = ".NETPortable";
 
         internal const string NetFrameworkIdentifier = ".NETFramework";
         private const string NetCoreFrameworkIdentifier = ".NETCore";
-        private const string PortableFrameworkIdentifier = ".NETPortable";
         internal const string AspNetFrameworkIdentifier = "Asp.Net";
         internal const string DnxFrameworkIdentifier = "DNX";
         internal const string DnxFrameworkShortName = "dnx";
