@@ -37,10 +37,6 @@ namespace Microsoft.Framework.Runtime
                     new FrameworkName(VersionUtility.DnxFrameworkIdentifier, new Version(4, 5, 1)),
                     new FrameworkName(VersionUtility.AspNetFrameworkIdentifier, new Version(5, 0))
                 }
-            },
-            { new FrameworkName(VersionUtility.NetFrameworkIdentifier, new Version(4, 6)), new List<FrameworkName> {
-                    new FrameworkName(VersionUtility.DnxFrameworkIdentifier, new Version(4, 6))
-                }
             }
         };
 
