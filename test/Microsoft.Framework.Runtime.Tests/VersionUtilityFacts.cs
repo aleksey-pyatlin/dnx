@@ -74,6 +74,14 @@ namespace Microsoft.Framework.Runtime.Tests
         [InlineData("core50", "portable-net451+win8+core50", true)]
         [InlineData("core50", "portable-net451+win8+dnxcore50", true)]
         [InlineData("core50", "portable-net451+win8+aspnetcore50", true)]
+        
+        // Old-world Portable doesn't support core50
+        [InlineData("portable-net40+sl5+win8", "core50", false)]
+        [InlineData("portable-net45+win8", "core50", false)]
+        [InlineData("portable-net451+win81", "core50", false)]
+        [InlineData("portable-net451+win8+core50", "core50", false)]
+        [InlineData("portable-net451+win8+dnxcore50", "core50", false)]
+        [InlineData("portable-net451+win8+aspnetcore50", "core50", false)]
         public void FrameworksAreCompatible(string project, string package, bool compatible)
         {
             var frameworkName1 = VersionUtility.ParseFrameworkName(project);

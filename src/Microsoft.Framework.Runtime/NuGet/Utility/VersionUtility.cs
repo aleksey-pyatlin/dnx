@@ -116,7 +116,7 @@ namespace NuGet
             // Allow a net package to be installed in an aspnet (or dnx, transitively by above) project
             { AspNetFrameworkIdentifier, Tuple.Create(_emptyVersion, new FrameworkName(NetFrameworkIdentifier, MaxVersion)) },
 
-            { NetFrameworkIdentifier, Tuple.Create(new Version(4, 5, 1), new FrameworkName(PortableFrameworkIdentifier, new Version(5, 0))) }
+            { NetFrameworkIdentifier, Tuple.Create(new Version(4, 6), new FrameworkName(PortableFrameworkIdentifier, new Version(5, 0))) }
         };
 
 
@@ -1023,7 +1023,7 @@ namespace NuGet
         /// </remarks>
         internal static int GetCompatibilityBetweenPortableLibraryAndPortableLibrary(FrameworkName frameworkName, FrameworkName targetFrameworkName)
         {
-            // Algorithms: Give a score from 0 to N indicating how close *in version* each package platform is the projectâ€™s platforms
+            // Algorithms: Give a score from 0 to N indicating how close *in version* each package platform is the project's platforms
             // and then choose the folder with the lowest score. If the score matches, choose the one with the least platforms.
             //
             // For example:
