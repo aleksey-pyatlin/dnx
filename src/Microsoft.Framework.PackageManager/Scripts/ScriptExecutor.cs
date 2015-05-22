@@ -43,15 +43,16 @@ namespace Microsoft.Framework.PackageManager
                     // locate the script. The directory separator is platform-specific.
                     scriptArguments[0] = scriptArguments[0].Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
 
-                    // Command-lines on Windows are executed via "cmd /C" in order
-                    // to support batch files, &&, built-in commands like echo, etc.
+                    // Command-lines on Windows are executed via "cmd /S /C" in order to support batch files, &&,
+                    // built-in commands like echo, et cetera. /S allows quoting the command as well as the arguments.
                     // ComSpec is Windows-specific, and contains the full path to cmd.exe
                     var comSpec = Environment.GetEnvironmentVariable("ComSpec");
                     if (!string.IsNullOrEmpty(comSpec))
                     {
                         scriptArguments =
-                            new[] { comSpec, "/C" }
+                            new[] { comSpec, "/S", "/C", "\"" }
                             .Concat(scriptArguments)
+                            .Concat(new[] { "\"" })
                             .ToArray();
                     }
                 }
