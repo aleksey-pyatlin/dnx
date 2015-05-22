@@ -40,7 +40,7 @@ namespace Microsoft.Framework.PackageManager
                 if (!PlatformHelper.IsMono)
                 {
                     // Forward-slash is used in script blocked only. Replace them with back-slash to correctly
-                    // locate the script. The directory separator is platform-specific. 
+                    // locate the script. The directory separator is platform-specific.
                     scriptArguments[0] = scriptArguments[0].Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
 
                     // Command-lines on Windows are executed via "cmd /C" in order
@@ -50,9 +50,8 @@ namespace Microsoft.Framework.PackageManager
                     if (!string.IsNullOrEmpty(comSpec))
                     {
                         scriptArguments =
-                            new[] { comSpec, "/C", "\"" }
+                            new[] { comSpec, "/C" }
                             .Concat(scriptArguments)
-                            .Concat(new[] { "\"" })
                             .ToArray();
                     }
                 }

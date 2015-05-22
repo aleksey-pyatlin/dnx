@@ -14,7 +14,7 @@ namespace Microsoft.Framework.ApplicationHost.Impl.Syntax
             var environmentVariablePiece = Ch('%').And(Rep(Ch().Not(Ch('%')))).And(Ch('%')).Left().Down().Str()
                 .Build(key => variable(key) ?? "%" + key + "%");
 
-            var escapeSequencePiece = 
+            var escapeSequencePiece =
                 Ch('%').And(Ch('%')).Build(_=>"%")
                     .Or(Ch('^').And(Ch('^')).Build(_ => "^"))
                     .Or(Ch('\\').And(Ch('\\')).Build(_ => "\\"))
@@ -29,7 +29,9 @@ namespace Microsoft.Framework.ApplicationHost.Impl.Syntax
 
             var unquotedTerm = Rep1(unquotedPiece.Or(specialPiece)).Str();
 
-            var quotedTerm = Ch('\"').And(Rep(quotedPiece.Or(specialPiece)).Str()).And(Ch('\"')).Left().Down();
+            var quotedTerm = Ch('\"').And(Rep(quotedPiece.Or(specialPiece)).Str()).And(Ch('\"'))
+                .Left().Down()
+                .Build(str => "\"" + str + "\"");
 
             var whitespace = Rep(Ch(' '));
 
