@@ -33,6 +33,17 @@ namespace Microsoft.Framework.Runtime.Common
                 }
                 else if (parameters.Length == 1)
                 {
+                    for (var index = 0; index < args.Length; index++)
+                    {
+                        var arg = args[index];
+                        if (arg.StartsWith("\"", StringComparison.Ordinal) &&
+                            arg.EndsWith("\"", StringComparison.Ordinal))
+                        {
+                            // Remove quotes around this argument.
+                            args[index] = arg.Substring(1, arg.Length - 2);
+                        }
+                    }
+
                     result = entryPoint.Invoke(instance, new object[] { args });
                 }
             }
